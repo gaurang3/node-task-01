@@ -30,6 +30,12 @@ var AuthController = {
    * @param {Object} req
    * @param {Object} res
    */
+
+   check: function(req, res){
+    console.log(req.session);
+    req.json(req.session);
+   },
+
   login: function (req, res) {
     var strategies = sails.config.passport
       , providers  = {};
@@ -104,6 +110,7 @@ var AuthController = {
    * @param {Object} res
    */
   provider: function (req, res) {
+    // console.log(passport.endpoint(req, res));
     passport.endpoint(req, res);
   },
 
@@ -156,6 +163,12 @@ var AuthController = {
     }
 
     passport.callback(req, res, function (err, user, challenges, statuses) {
+
+// console.log('here'); 
+// console.log(err); 
+// console.log(user); 
+// return false;
+
       if (err || !user) {
         return tryAgain(challenges);
       }

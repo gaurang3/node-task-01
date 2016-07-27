@@ -89,9 +89,17 @@ passport.connect = function (req, query, profile, next) {
     user.username = profile.username;
   }
 
+  // if (profile.hasOwnProperty('id')) {
+  //   user.username = profile.id;
+  // }
+
   // If neither an email or a username was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
   // whoever's next in the line take care of it.
+  // console.log(user);
+  // console.log(profile);
+  // console.log('user here');
+  // return false;
   if (!user.username && !user.email) {
     return next(new Error('Neither a username nor email was available'));
   }
@@ -139,19 +147,23 @@ passport.connect = function (req, query, profile, next) {
       //           connected passport.
       // Action:   Get the user associated with the passport.
       else {
+        // console.log(passport);
         // If the tokens have changed since the last session, update them
         if (query.hasOwnProperty('tokens') && query.tokens !== passport.tokens) {
           passport.tokens = query.tokens;
         }
-
+// console.log(passport.id);
+        var passport_sess_id = passport.id;
         // Save any updates to the Passport before moving on
         passport.save(function (err, passport) {
+// console.log(err);
           if (err) {
             return next(err);
           }
-
+// console.log(next);
+// return false;
           // Fetch the user associated with the Passport
-          User.findOne(passport.user.id, next);
+          User.findOne(passport_sess_id, next);
         });
       }
     } else {

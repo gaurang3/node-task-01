@@ -19,29 +19,29 @@ module.exports.passport = {
     strategy: require('passport-local').Strategy
   },
 
-  bearer: {
-    strategy: require('passport-http-bearer').Strategy
-  },
+  // bearer: {
+  //   strategy: require('passport-http-bearer').Strategy
+  // },
 
   twitter: {
     name: 'Twitter',
     protocol: 'oauth',
     strategy: require('passport-twitter').Strategy,
     options: {
-      consumerKey: 'your-consumer-key',
-      consumerSecret: 'your-consumer-secret'
+      consumerKey: 'RW51qhVM86nIbHGWOv6E5vntG',
+      consumerSecret: 'SqauvIv4wW1hW1Od2Ta03Ky6BBj2gSyzAo9aP2GhrCUjLyNY8X'
     }
   },
 
-  github: {
-    name: 'GitHub',
-    protocol: 'oauth2',
-    strategy: require('passport-github').Strategy,
-    options: {
-      clientID: 'your-client-id',
-      clientSecret: 'your-client-secret'
-    }
-  },
+  // github: {
+  //   name: 'GitHub',
+  //   protocol: 'oauth2',
+  //   strategy: require('passport-github').Strategy,
+  //   options: {
+  //     clientID: 'your-client-id',
+  //     clientSecret: 'your-client-secret'
+  //   }
+  // },
 
   facebook: {
     name: 'Facebook',
@@ -50,28 +50,29 @@ module.exports.passport = {
     options: {
       clientID: '220971638302599',
       clientSecret: 'e1cac0630d5cdecfc4bea1efe31fd7a0',
-      scope: ['email'] /* email is necessary for login behavior */
+      scope: ['email','public_profile'] /* email is necessary for login behavior */,
+      profileFields: ['id','emails', 'name']
     }
   },
 
-  google: {
-    name: 'Google',
-    protocol: 'oauth2',
-    strategy: require('passport-google-oauth').OAuth2Strategy,
-    options: {
-      clientID: 'your-client-id',
-      clientSecret: 'your-client-secret'
-    }
-  },
+  // google: {
+  //   name: 'Google',
+  //   protocol: 'oauth2',
+  //   strategy: require('passport-google-oauth').OAuth2Strategy,
+  //   options: {
+  //     clientID: 'your-client-id',
+  //     clientSecret: 'your-client-secret'
+  //   }
+  // },
 
-  cas: {
-    name: 'CAS',
-    protocol: 'cas',
-    strategy: require('passport-cas').Strategy,
-    options: {
-      ssoBaseURL: 'http://your-cas-url',
-      serverBaseURL: 'http://localhost:1337',
-      serviceURL: 'http://localhost:1337/auth/cas/callback'
-    }
-  }
+  // cas: {
+  //   name: 'CAS',
+  //   protocol: 'cas',
+  //   strategy: require('passport-cas').Strategy,
+  //   options: {
+  //     ssoBaseURL: 'http://your-cas-url',
+  //     serverBaseURL: 'http://localhost:1337',
+  //     serviceURL: 'http://localhost:1337/auth/cas/callback'
+  //   }
+  // }
 };
